@@ -1,0 +1,69 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://manifests.museologi.st//2.json",
+  "type": "Manifest",
+  "label": {
+    "en": [
+      "Item 2"
+    ]
+  },
+  "items": [
+    {
+      "id": "https://manifests.museologi.st//2.json/canvas/p1",
+      "type": "Canvas",
+      "items": [
+        {
+          "id": "https://manifests.museologi.st//2.json/canvas/p1/annotationpage/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://manifests.museologi.st//2.json/canvas/p1/annotationpage/1/annotation/1",
+              "type": "Annotation",
+              "motivation": "identifying",
+              "body": {
+                "id": "https://iiif.museologi.st/iiif/3/RAF_2_BR11_14_V_0026.png/full/max/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "service": [
+                  {
+                    "id": "https://iiif.museologi.st/iiif/3/RAF_2_BR11_14_V_0026.png",
+                    "type": "ImageService3",
+                    "profile": "http://iiif.io/api/image/3/level2.json"
+                  }
+                ]
+              },
+              "target": "https://manifests.museologi.st//2.json/canvas/p1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "thumbnail": [
+    {
+      "id": "https://iiif.museologi.st/iiif/3/RAF_2_BR11_14_V_0026.png/full/256,/0/default.jpg",
+      "type": "Image",
+      "service": [
+        {
+          "id": "https://iiif.museologi.st/iiif/3/RAF_2_BR11_14_V_0026.png",
+          "type": "ImageService3",
+          "profile": "http://iiif.io/api/image/3/level2.json"
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "label": {
+        "en": [
+          "Date Created"
+        ]
+      },
+      "value": {
+        "en": [
+          "2025-07-09T14:19:19.765Z"
+        ]
+      }
+    }
+  ]
+}

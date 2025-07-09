@@ -7,7 +7,7 @@ const path = require('path');
 // --- Configuration ---
 const DIRECTUS_API_URL = 'https://directus.museologi.st'; // Your Directus API URL
 const CANTALOUPE_IIIF_URL = 'https://iiif.museologi.st/iiif/3'; // Your Cantaloupe IIIF endpoint for v3
-const PUBLIC_MANIFEST_BASE_URL = 'https://manifests.museologi.st/'; // Where your static manifests will be served
+const PUBLIC_MANIFEST_BASE_URL = 'https://manifests.museologi.st'; // Where your static manifests will be served
 const OUTPUT_DIR = path.join(__dirname, '../docs'); // Output directory for static manifests
 const DIRECTUS_COLLECTION_NAME = 'Historic_England_Raf'; // The Directus collection holding your items with image files
 const FILE_FIELD_NAME = 'filename'; // The field in your Directus collection that links to a directus_files entry

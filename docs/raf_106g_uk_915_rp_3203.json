@@ -1,6 +1,6 @@
 {
   "@context": "http://iiif.io/api/presentation/3/context.json",
-  "id": "https://manifests.museologi.st//1.json",
+  "id": "https://manifests.museologi.st/1.json",
   "type": "Manifest",
   "label": {
     "en": [
@@ -9,15 +9,15 @@
   },
   "items": [
     {
-      "id": "https://manifests.museologi.st//1.json/canvas/p1",
+      "id": "https://manifests.museologi.st/1.json/canvas/p1",
       "type": "Canvas",
       "items": [
         {
-          "id": "https://manifests.museologi.st//1.json/canvas/p1/annotationpage/1",
+          "id": "https://manifests.museologi.st/1.json/canvas/p1/annotationpage/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://manifests.museologi.st//1.json/canvas/p1/annotationpage/1/annotation/1",
+              "id": "https://manifests.museologi.st/1.json/canvas/p1/annotationpage/1/annotation/1",
               "type": "Annotation",
               "motivation": "identifying",
               "body": {
@@ -32,7 +32,7 @@
                   }
                 ]
               },
-              "target": "https://manifests.museologi.st//1.json/canvas/p1"
+              "target": "https://manifests.museologi.st/1.json/canvas/p1"
             }
           ]
         }

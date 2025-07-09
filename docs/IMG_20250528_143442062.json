@@ -11,6 +11,8 @@
     {
       "id": "https://manifests.museologi.st/IMG_20250528_143442062.json/canvas/p1",
       "type": "Canvas",
+      "height": 3072,
+      "width": 4096,
       "items": [
         {
           "id": "https://manifests.museologi.st/IMG_20250528_143442062.json/canvas/p1/annotationpage/1",
@@ -19,14 +21,16 @@
             {
               "id": "https://manifests.museologi.st/IMG_20250528_143442062.json/canvas/p1/annotationpage/1/annotation/1",
               "type": "Annotation",
-              "motivation": "identifying",
+              "motivation": "painting",
               "body": {
-                "id": "https://iiif.museologi.st/iiif/2/IMG_20250528_143442062.jpg/full/max/0/default.jpg",
+                "id": "https://iiif.museologi.st/iiif/3/IMG_20250528_143442062.jpg/full/max/0/default.jpg",
                 "type": "Image",
                 "format": "image/jpeg",
+                "width": 4096,
+                "height": 3072,
                 "service": [
                   {
-                    "id": "https://iiif.museologi.st/iiif/2/IMG_20250528_143442062.jpg",
+                    "id": "https://iiif.museologi.st/iiif/3/IMG_20250528_143442062.jpg",
                     "type": "ImageService3",
                     "profile": "http://iiif.io/api/image/3/level2.json"
                   }
@@ -41,11 +45,11 @@
   ],
   "thumbnail": [
     {
-      "id": "https://iiif.museologi.st/iiif/2/IMG_20250528_143442062.jpg/full/256,/0/default.jpg",
+      "id": "https://iiif.museologi.st/iiif/3/IMG_20250528_143442062.jpg/full/256,/0/default.jpg",
       "type": "Image",
       "service": [
         {
-          "id": "https://iiif.museologi.st/iiif/2/IMG_20250528_143442062.jpg",
+          "id": "https://iiif.museologi.st/iiif/3/IMG_20250528_143442062.jpg",
           "type": "ImageService3",
           "profile": "http://iiif.io/api/image/3/level2.json"
         }

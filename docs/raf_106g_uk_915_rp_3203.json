@@ -11,6 +11,8 @@
     {
       "id": "https://manifests.museologi.st/raf_106g_uk_915_rp_3203.json/canvas/p1",
       "type": "Canvas",
+      "height": 4563,
+      "width": 3840,
       "items": [
         {
           "id": "https://manifests.museologi.st/raf_106g_uk_915_rp_3203.json/canvas/p1/annotationpage/1",
@@ -19,14 +21,16 @@
             {
               "id": "https://manifests.museologi.st/raf_106g_uk_915_rp_3203.json/canvas/p1/annotationpage/1/annotation/1",
               "type": "Annotation",
-              "motivation": "identifying",
+              "motivation": "painting",
               "body": {
-                "id": "https://iiif.museologi.st/iiif/2/raf_106g_uk_915_rp_3203.png/full/max/0/default.jpg",
+                "id": "https://iiif.museologi.st/iiif/3/raf_106g_uk_915_rp_3203.png/full/max/0/default.jpg",
                 "type": "Image",
                 "format": "image/jpeg",
+                "width": 3840,
+                "height": 4563,
                 "service": [
                   {
-                    "id": "https://iiif.museologi.st/iiif/2/raf_106g_uk_915_rp_3203.png",
+                    "id": "https://iiif.museologi.st/iiif/3/raf_106g_uk_915_rp_3203.png",
                     "type": "ImageService3",
                     "profile": "http://iiif.io/api/image/3/level2.json"
                   }
@@ -41,11 +45,11 @@
   ],
   "thumbnail": [
     {
-      "id": "https://iiif.museologi.st/iiif/2/raf_106g_uk_915_rp_3203.png/full/256,/0/default.jpg",
+      "id": "https://iiif.museologi.st/iiif/3/raf_106g_uk_915_rp_3203.png/full/256,/0/default.jpg",
       "type": "Image",
       "service": [
         {
-          "id": "https://iiif.museologi.st/iiif/2/raf_106g_uk_915_rp_3203.png",
+          "id": "https://iiif.museologi.st/iiif/3/raf_106g_uk_915_rp_3203.png",
           "type": "ImageService3",
           "profile": "http://iiif.io/api/image/3/level2.json"
         }

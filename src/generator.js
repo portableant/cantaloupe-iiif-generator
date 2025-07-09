@@ -6,7 +6,7 @@ const path = require('path');
 
 // --- Configuration ---
 const DIRECTUS_API_URL = 'https://directus.museologi.st'; // Your Directus API URL
-const CANTALOUPE_IIIF_URL = 'https://iiif.museologi.st/iiif/2'; // Your Cantaloupe IIIF endpoint for v3
+const CANTALOUPE_IIIF_URL = 'https://iiif.museologi.st/iiif/3'; // Your Cantaloupe IIIF endpoint for v3
 const PUBLIC_MANIFEST_BASE_URL = 'https://manifests.museologi.st'; // Where your static manifests will be served
 const OUTPUT_DIR = path.join(__dirname, '../docs'); // Output directory for static manifests
 const DIRECTUS_COLLECTION_NAME = 'Historic_England_Raf'; // The Directus collection holding your items with image files
@@ -29,7 +29,7 @@ async function fetchDirectusData() {
             'filename',
             'title',
             'description',
-            'creator', 
+            'creator',
             'date_created'
         ].join(',');
 
@@ -50,13 +50,30 @@ async function fetchDirectusData() {
         process.exit(1);
     }
 }
+/**
+ * Fetches the IIIF Image API info.json from Cantaloupe for a given filename.
+ * @param {string} cantaloupeImageIdentifier The filename or identifier for the image (e.g., "my_image.jpg").
+ * @returns {Promise<object|null>} The parsed info.json object, or null if not found.
+ */
+async function fetchCantaloupeInfoJson(cantaloupeImageIdentifier) {
+    const url = `${CANTALOUPE_IIIF_URL}/${cantaloupeImageIdentifier}/info.json`;
+    try {
+        const response = await axios.get(url);
+        console.log(`Fetched Cantaloupe info.json for: ${cantaloupeImageIdentifier}`);
+        return response.data;
+    } catch (error) {
+        console.warn(`Could not fetch Cantaloupe info.json for ${cantaloupeImageIdentifier}: ${error.message}`);
+        return null;
+    }
+}
+
 
 /**
  * Creates a IIIF Presentation 3.0 Manifest from a Directus item.
  * @param {object} item The Directus item data.
- * @returns {object|null} A IIIFManifest object or null if no valid images are found.
+ * @returns {Promise<object|null>} A IIIFManifest object or null if no valid images are found.
  */
-function createIIIFManifest(item) {
+async function createIIIFManifest(item) {
     // Normalize the image data to an array of file objects
     let itemImages = [];
     const linkedImageData = item[FILE_FIELD_NAME];
@@ -78,23 +95,34 @@ function createIIIFManifest(item) {
     const canvases = [];
     const thumbnailServices = [];
 
-    itemImages.forEach((imageFile, index) => {
-        // Cantaloupe IIIF Image API 3.0 URL pattern: /{identifier}/info.json
-        const cantaloupeImageServiceId = `${CANTALOUPE_IIIF_URL}/${item.filename}`;
+    // Loop through each image associated with the Directus item
+    for (const [index, imageFile] of itemImages.entries()) {
+        const cantaloupeImageIdentifier = item.filename; // Use the filename as the identifier for Cantaloupe
+        const cantaloupeImageServiceBaseUrl = `${CANTALOUPE_IIIF_URL}/${cantaloupeImageIdentifier}`;
+
+        // Fetch info.json to get width and height
+        const infoJson = await fetchCantaloupeInfoJson(cantaloupeImageIdentifier);
+
+        let imageWidth = 0;
+        let imageHeight = 0;
+
+        if (infoJson && infoJson.width && infoJson.height) {
+            imageWidth = infoJson.width;
+            imageHeight = infoJson.height;
+            console.log(`Found dimensions for ${cantaloupeImageIdentifier}: ${imageWidth}x${imageHeight}`);
+        } else {
+            console.warn(`Could not determine dimensions for ${cantaloupeImageIdentifier}. Canvas will have 0x0 dimensions.`);
+        }
+
         const canvasId = `${manifestId}/canvas/p${index + 1}`;
         const annotationPageId = `${canvasId}/annotationpage/1`;
         const annotationId = `${annotationPageId}/annotation/1`;
 
-        // if (!imageFile.width || !imageFile.height) {
-        //     console.warn(`Warning: Image ${imageFile.filename_disk} for item ${item.id} is missing width/height. Skipping this image in manifest.`);
-        //     return; // Skip this image if dimensions are missing
-        // }
-
         canvases.push({
             id: canvasId,
             type: 'Canvas',
-            height: imageFile.height,
-            width: imageFile.width,
+            height: imageHeight, // Use fetched height
+            width: imageWidth,   // Use fetched width
             label: imageFile.title ? { en: [imageFile.title] } : undefined, // Canvas label from file title
             items: [
                 {
@@ -104,16 +132,16 @@ function createIIIFManifest(item) {
                         {
                             id: annotationId,
                             type: 'Annotation',
-                            motivation: 'identifying',
+                            motivation: 'painting', // Use 'painting' for image annotations
                             body: {
-                                id: `${cantaloupeImageServiceId}/full/max/0/default.jpg`, // Example image request URL
+                                id: `${cantaloupeImageServiceBaseUrl}/full/max/0/default.jpg`, // Example image request URL
                                 type: 'Image',
                                 format: imageFile.type || 'image/jpeg', // Fallback format
-                                width: imageFile.width,
-                                height: imageFile.height,
+                                width: imageWidth,   // Use fetched width
+                                height: imageHeight, // Use fetched height
                                 service: [
                                     {
-                                        id: cantaloupeImageServiceId,
+                                        id: cantaloupeImageServiceBaseUrl,
                                         type: 'ImageService3',
                                         profile: 'http://iiif.io/api/image/3/level2.json' // Cantaloupe usually supports level 2
                                     }
@@ -129,18 +157,18 @@ function createIIIFManifest(item) {
         // Add a thumbnail for the manifest (e.g., the first image's service)
         if (index === 0) {
             thumbnailServices.push({
-                id: `${cantaloupeImageServiceId}/full/256,/0/default.jpg`, // Example thumbnail request
+                id: `${cantaloupeImageServiceBaseUrl}/full/256,/0/default.jpg`, // Example thumbnail request
                 type: 'Image',
                 service: [
                     {
-                        id: cantaloupeImageServiceId,
+                        id: cantaloupeImageServiceBaseUrl,
                         type: 'ImageService3',
                         profile: 'http://iiif.io/api/image/3/level2.json'
                     }
                 ]
             });
         }
-    });
+    }
 
     if (canvases.length === 0) {
         return null; // No valid canvases generated
@@ -183,11 +211,12 @@ async function generateStaticManifests() {
     }
 
     const directusItems = await fetchDirectusData();
-    console.log(`Fetched ${directusItems.length} items from Directus collection: ${DIRECTUS_COLLECTION_NAME}.`);
 
+    console.log(`Fetched ${directusItems.length} items from Directus collection: ${DIRECTUS_COLLECTION_NAME}.`);
     let generatedCount = 0;
     for (const item of directusItems) {
-        const manifest = createIIIFManifest(item);
+        // Await the manifest creation as it now involves async calls to Cantaloupe
+        const manifest = await createIIIFManifest(item);
         if (manifest) {
             const fname = path.parse(item.filename).name;
             const fileName = `${fname}.json`;

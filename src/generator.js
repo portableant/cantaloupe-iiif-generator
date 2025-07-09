@@ -74,7 +74,7 @@ function createIIIFManifest(item) {
         return null;
     }
 
-    const manifestId = `${PUBLIC_MANIFEST_BASE_URL}/${item.id}.json`;
+    const manifestId = `${PUBLIC_MANIFEST_BASE_URL}/${path.parse(item.filename).name}.json`;
     const canvases = [];
     const thumbnailServices = [];
 

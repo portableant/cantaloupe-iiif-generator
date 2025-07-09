@@ -4,7 +4,7 @@
   "type": "Manifest",
   "label": {
     "en": [
-      "Item 6"
+      "A side shot of Stonehenge"
     ]
   },
   "items": [
@@ -53,6 +53,18 @@
     }
   ],
   "metadata": [
+    {
+      "label": {
+        "en": [
+          "Creator"
+        ]
+      },
+      "value": {
+        "en": [
+          "Daniel Pett"
+        ]
+      }
+    },
     {
       "label": {
         "en": [

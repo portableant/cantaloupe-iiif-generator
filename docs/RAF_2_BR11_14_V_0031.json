@@ -4,7 +4,7 @@
   "type": "Manifest",
   "label": {
     "en": [
-      "Item 3"
+      "An aerial image from the RAF Archive"
     ]
   },
   "items": [
@@ -53,6 +53,18 @@
     }
   ],
   "metadata": [
+    {
+      "label": {
+        "en": [
+          "Creator"
+        ]
+      },
+      "value": {
+        "en": [
+          "Royal Airforce"
+        ]
+      }
+    },
     {
       "label": {
         "en": [

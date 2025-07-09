@@ -27,9 +27,9 @@ async function fetchDirectusData() {
         const fieldsToFetch = [
             'id',
             'filename',
-           // 'title',
-           // 'description',
-            //'creator', // Example metadata field
+            'title',
+            'description',
+            'creator', 
             'date_created'
         ].join(',');
 

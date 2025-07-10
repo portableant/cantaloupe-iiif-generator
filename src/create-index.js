@@ -21,7 +21,7 @@ function generateHtmlContent(files, directoryPath) {
         if (stats.isDirectory()) {
             listItems += `<li><a href="./${file}/">${file}/</a></li>`; // Link to directory
         } else {
-            listItems += `<li><a href="./${file}">${file}</a></li>`; // Link to file
+            listItems += `<li><a href="./${file}">${file}</a> | <a href="https://universalviewer.io/uv.html?manifest=${file}">Image</a></li>`; // Link to file
         }
     });
 

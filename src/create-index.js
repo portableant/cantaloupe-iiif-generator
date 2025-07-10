@@ -14,7 +14,7 @@ const outputFileName = 'index.html';
 function generateHtmlContent(files, directoryPath) {
     let listItems = '';
     files.forEach(file => {
-        if (file.toUpperCase() === 'CNAME') return;
+        if (file.toUpperCase() === 'CNAME' || file === 'styles.css') return;
         const filePath = path.join(directoryPath, file);
         const stats = fs.statSync(filePath); // Get file stats to check if it's a directory
 
@@ -30,21 +30,25 @@ function generateHtmlContent(files, directoryPath) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manifests available</title>
-    <style>
-        body { font-family: sans-serif; margin: 2em; background-color: #f4f4f4; color: #333; }
-        h1 { color: #0056b3; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 0.5em; }
-        a { text-decoration: none; color: #007bff; }
-        a:hover { text-decoration: underline; }
-    </style>
-</head>
+    <title>Available Manifests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> </head>
 <body>
-    <h1>Docs Directory Listing</h1>
-    <ul>
-        ${listItems || '<li>No files found in the docs directory.</li>'}
-    </ul>
+    <div class="container">
+        <header>
+            <h1>Available Manifests</h1>
+        </header>
+        <main>
+            <ul class="file-list">
+                ${listItems || '<li class="empty-state">No manifests found at this time.</li>'}
+            </ul>
+        </main>
+        <footer>
+            <p>&copy; 2025 Daniel Pett</p>
+        </footer>
+    </div>
 </body>
 </html>`;
 }

@@ -1,0 +1,93 @@
+:root {
+    --primary-color: #007bff; /* A nice blue for links */
+    --text-color: #333;
+    --background-color: #f8f9fa; /* Light grey background */
+    --border-color: #e9ecef; /* Light border for separation */
+    --shadow-color: rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    --header-color: #212529; /* Darker text for headers */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 2rem 0; /* Add vertical padding to the body */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    padding: 2.5rem 3rem; /* More generous padding */
+    width: 100%;
+    max-width: 768px; /* Max width for readability */
+    margin: 0 1rem; /* Horizontal margin for smaller screens */
+    border: 1px solid var(--border-color); /* Subtle border */
+}
+
+header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color); /* Separator under header */
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: var(--header-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600; /* Medium bold */
+    text-align: center; /* Center the title */
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove default ul margin */
+}
+
+.file-list li {
+    margin-bottom: 0.75rem; /* More space between items */
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed var(--border-color); /* Dashed separator */
+}
+
+.file-list li:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.file-list a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 1.1rem; /* Slightly larger font for links */
+    display: block; /* Make the whole list item clickable */
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    padding-left: 0.5rem; /* Slight indent */
+}
+
+.file-list a:hover {
+    color: #0056b3; /* Slightly darker blue on hover */
+    background-color: #f2f6fa; /* Subtle background change on hover */
+    text-decoration: none; /* Keep text decoration off */
+}
+
+.empty-state {
+    text-align: center;
+    font-style: italic;
+    color: #6c757d; /* Muted color for empty state */
+    padding: 2rem 0;
+}
+
+footer {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.9rem;
+}

@@ -65,7 +65,6 @@ h1 {
     text-decoration: none;
     color: var(--primary-color);
     font-size: 1.1rem; /* Slightly larger font for links */
-    display: block; /* Make the whole list item clickable */
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     padding-left: 0.5rem; /* Slight indent */
 }

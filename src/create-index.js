@@ -21,7 +21,7 @@ function generateHtmlContent(files, directoryPath) {
         if (stats.isDirectory()) {
             listItems += `<li><a href="./${file}/">${file}/</a></li>`; // Link to directory
         } else {
-            listItems += `<li><a href="./${file}">${file}</a> <a href="https://samvera-labs.github.io/clover-iiif/docs/viewer/demo?iiif-content=https://manifests.museologi.st/${file}">Demor</a></li>`; // Link to file
+            listItems += `<li><a href="./${file}">${file}</a> <a href="https://samvera-labs.github.io/clover-iiif/docs/viewer/demo?iiif-content=https://manifests.museologi.st/${file}">Demo</a></li>`; // Link to file
         }
     });
 

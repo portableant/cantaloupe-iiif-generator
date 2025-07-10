@@ -7,7 +7,8 @@
     "generate": "node generator.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate:iiif": "node src/generator.js",
-    "start": "npm run generate:iiif"
+    "start": "npm run generate:iiif",
+    "create:index": "node src/create-index.js"
   },
   "keywords": [
     "iiif",

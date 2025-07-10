@@ -18,6 +18,14 @@ body {
     justify-content: center;
     align-items: flex-start; /* Align content to the top */
     min-height: 100vh; /* Ensure body takes full viewport height */
+
+    /* --- Background Image Styles --- */
+    background-image: url('https://data.fitzmuseum.cam.ac.uk/imagestore/pdp/pdp82/large_PD_8_1979_1_201709_mfj22_dc2.jpg'); /* **CHANGE THIS PATH** */
+    background-size: cover; /* Ensures the image covers the entire viewport */
+    background-position: center center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents image repetition */
+    background-attachment: fixed; /* Keeps the image fixed when scrolling */
+    /* --- End Background Image Styles --- */
 }
 
 .container {

@@ -1,0 +1,85 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://manifests.museologi.st/RAF_3G_TUD_UK_19_V_5188.json",
+  "type": "Manifest",
+  "label": {
+    "en": [
+      "An aerial image from the RAF Archive"
+    ]
+  },
+  "items": [
+    {
+      "id": "https://manifests.museologi.st/RAF_3G_TUD_UK_19_V_5188.json/canvas/p1",
+      "type": "Canvas",
+      "height": 4742,
+      "width": 3979,
+      "items": [
+        {
+          "id": "https://manifests.museologi.st/RAF_3G_TUD_UK_19_V_5188.json/canvas/p1/annotationpage/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://manifests.museologi.st/RAF_3G_TUD_UK_19_V_5188.json/canvas/p1/annotationpage/1/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://iiif.museologi.st/iiif/3/RAF_3G_TUD_UK_19_V_5188.png/full/max/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 3979,
+                "height": 4742,
+                "service": [
+                  {
+                    "id": "https://iiif.museologi.st/iiif/3/RAF_3G_TUD_UK_19_V_5188.png",
+                    "type": "ImageService3",
+                    "profile": "http://iiif.io/api/image/3/level2.json"
+                  }
+                ]
+              },
+              "target": "https://manifests.museologi.st/RAF_3G_TUD_UK_19_V_5188.json/canvas/p1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "thumbnail": [
+    {
+      "id": "https://iiif.museologi.st/iiif/3/RAF_3G_TUD_UK_19_V_5188.png/full/256,/0/default.jpg",
+      "type": "Image",
+      "service": [
+        {
+          "id": "https://iiif.museologi.st/iiif/3/RAF_3G_TUD_UK_19_V_5188.png",
+          "type": "ImageService3",
+          "profile": "http://iiif.io/api/image/3/level2.json"
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "label": {
+        "en": [
+          "Creator"
+        ]
+      },
+      "value": {
+        "en": [
+          "Royal Airforce"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Date Created"
+        ]
+      },
+      "value": {
+        "en": [
+          "2025-07-10T10:31:57.389Z"
+        ]
+      }
+    }
+  ]
+}

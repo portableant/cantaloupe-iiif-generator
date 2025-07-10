@@ -41,6 +41,7 @@ function generateHtmlContent(files, directoryPath) {
             <h1>Available Manifests</h1>
         </header>
         <main>
+            <p>Welcome to the manifest index. Below is a list of available simple manifests:</p>
             <ul class="file-list">
                 ${listItems || '<li class="empty-state">No manifests found at this time.</li>'}
             </ul>

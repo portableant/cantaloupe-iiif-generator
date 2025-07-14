@@ -1,0 +1,112 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://manifests.museologi.st/5d08c24a-8287-40ac-b805-64ee337c2ea8.json",
+  "type": "Manifest",
+  "label": {
+    "en": [
+      "A Ghibli version of me"
+    ]
+  },
+  "summary": {
+    "en": [
+      "Created by AI"
+    ]
+  },
+  "items": [
+    {
+      "id": "https://manifests.museologi.st/5d08c24a-8287-40ac-b805-64ee337c2ea8.json/canvas/p1",
+      "type": "Canvas",
+      "height": 1014,
+      "width": 1024,
+      "label": {
+        "en": [
+          "502583401 10162634510056071 2052430361024892447 N"
+        ]
+      },
+      "description": {
+        "en": [
+          "Created by AI"
+        ]
+      },
+      "items": [
+        {
+          "id": "https://manifests.museologi.st/5d08c24a-8287-40ac-b805-64ee337c2ea8.json/canvas/p1/annotationpage/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://manifests.museologi.st/5d08c24a-8287-40ac-b805-64ee337c2ea8.json/canvas/p1/annotationpage/1/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://iiif.museologi.st/iiif/3/5d08c24a-8287-40ac-b805-64ee337c2ea8.jpg/full/max/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1024,
+                "height": 1014,
+                "service": [
+                  {
+                    "id": "https://iiif.museologi.st/iiif/3/5d08c24a-8287-40ac-b805-64ee337c2ea8.jpg",
+                    "type": "ImageService3",
+                    "profile": "http://iiif.io/api/image/3/level2.json"
+                  }
+                ]
+              },
+              "target": "https://manifests.museologi.st/5d08c24a-8287-40ac-b805-64ee337c2ea8.json/canvas/p1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "thumbnail": [
+    {
+      "id": "https://iiif.museologi.st/iiif/3/5d08c24a-8287-40ac-b805-64ee337c2ea8.jpg/full/256,/0/default.jpg",
+      "type": "Image",
+      "service": [
+        {
+          "id": "https://iiif.museologi.st/iiif/3/5d08c24a-8287-40ac-b805-64ee337c2ea8.jpg",
+          "type": "ImageService3",
+          "profile": "http://iiif.io/api/image/3/level2.json"
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "label": {
+        "en": [
+          "Summary"
+        ]
+      },
+      "value": {
+        "en": [
+          "Created by AI"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Date Created"
+        ]
+      },
+      "value": {
+        "en": [
+          "2025-07-14T16:10:21.714Z"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "License"
+        ]
+      },
+      "value": {
+        "en": [
+          "CC-BY"
+        ]
+      }
+    }
+  ]
+}

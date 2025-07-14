@@ -1,0 +1,165 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json",
+  "type": "Manifest",
+  "label": {
+    "en": [
+      "Aldbury Church of St John the Baptist"
+    ]
+  },
+  "summary": {
+    "en": [
+      "An image taken from the church yard of Albury Parish Church"
+    ]
+  },
+  "items": [
+    {
+      "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1",
+      "type": "Canvas",
+      "height": 2250,
+      "width": 4000,
+      "label": {
+        "en": [
+          "Im G20230404123355"
+        ]
+      },
+      "description": {
+        "en": [
+          "An image taken from the church yard of Albury Parish Church"
+        ]
+      },
+      "items": [
+        {
+          "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/annotationpage/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/annotationpage/1/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://iiif.museologi.st/iiif/3/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.jpg/full/max/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 4000,
+                "height": 2250,
+                "service": [
+                  {
+                    "id": "https://iiif.museologi.st/iiif/3/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.jpg",
+                    "type": "ImageService3",
+                    "profile": "http://iiif.io/api/image/3/level2.json"
+                  }
+                ]
+              },
+              "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1"
+            }
+          ]
+        }
+      ],
+      "annotations": {
+        "type": "AnnotationPage",
+        "items": [
+          {
+            "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/6affac14-ceda-4c46-bf38-b7ffa246209b",
+            "type": "Annotation",
+            "motivation": "commenting",
+            "body": [
+              {
+                "created": "2025-07-14T15:26:54.554Z",
+                "creator": "D",
+                "purpose": "commenting",
+                "type": "TextualBody",
+                "format": "text/html",
+                "value": "<p>Test</p>"
+              }
+            ],
+            "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1274,971,548,220"
+          },
+          {
+            "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/e0649e58-6f8d-414b-a9fa-f28eb79cc750",
+            "type": "Annotation",
+            "motivation": "commenting",
+            "body": [
+              {
+                "created": "2025-07-14T15:27:03.731Z",
+                "creator": "D",
+                "purpose": "commenting",
+                "type": "TextualBody",
+                "format": "text/html",
+                "value": "<p>Test 2</p>"
+              }
+            ],
+            "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1705,875,457,321"
+          },
+          {
+            "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/84b4b5aa-bd8c-428b-8d1a-e5bca2181514",
+            "type": "Annotation",
+            "motivation": "commenting",
+            "body": [
+              {
+                "created": "2025-07-14T15:27:10.406Z",
+                "creator": "D",
+                "purpose": "commenting",
+                "type": "TextualBody",
+                "format": "text/html",
+                "value": "<p>test 4</p>"
+              }
+            ],
+            "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1998,674,570,339"
+          }
+        ]
+      }
+    }
+  ],
+  "thumbnail": [
+    {
+      "id": "https://iiif.museologi.st/iiif/3/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.jpg/full/256,/0/default.jpg",
+      "type": "Image",
+      "service": [
+        {
+          "id": "https://iiif.museologi.st/iiif/3/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.jpg",
+          "type": "ImageService3",
+          "profile": "http://iiif.io/api/image/3/level2.json"
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "label": {
+        "en": [
+          "Summary"
+        ]
+      },
+      "value": {
+        "en": [
+          "An image taken from the church yard of Albury Parish Church"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Date Created"
+        ]
+      },
+      "value": {
+        "en": [
+          "2025-07-14T13:46:30.371Z"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "License"
+        ]
+      },
+      "value": {
+        "en": [
+          "CC-BY"
+        ]
+      }
+    }
+  ]
+}

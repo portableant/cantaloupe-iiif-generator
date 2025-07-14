@@ -56,59 +56,61 @@
           ]
         }
       ],
-      "annotations": {
-        "type": "AnnotationPage",
-        "items": [
-          {
-            "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/6affac14-ceda-4c46-bf38-b7ffa246209b",
-            "type": "Annotation",
-            "motivation": "commenting",
-            "body": [
-              {
-                "created": "2025-07-14T15:26:54.554Z",
-                "creator": "D",
-                "purpose": "commenting",
-                "type": "TextualBody",
-                "format": "text/html",
-                "value": "<p>Test</p>"
-              }
-            ],
-            "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1274,971,548,220"
-          },
-          {
-            "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/e0649e58-6f8d-414b-a9fa-f28eb79cc750",
-            "type": "Annotation",
-            "motivation": "commenting",
-            "body": [
-              {
-                "created": "2025-07-14T15:27:03.731Z",
-                "creator": "D",
-                "purpose": "commenting",
-                "type": "TextualBody",
-                "format": "text/html",
-                "value": "<p>Test 2</p>"
-              }
-            ],
-            "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1705,875,457,321"
-          },
-          {
-            "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/84b4b5aa-bd8c-428b-8d1a-e5bca2181514",
-            "type": "Annotation",
-            "motivation": "commenting",
-            "body": [
-              {
-                "created": "2025-07-14T15:27:10.406Z",
-                "creator": "D",
-                "purpose": "commenting",
-                "type": "TextualBody",
-                "format": "text/html",
-                "value": "<p>test 4</p>"
-              }
-            ],
-            "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1998,674,570,339"
-          }
-        ]
-      }
+      "annotations": [
+        {
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/6affac14-ceda-4c46-bf38-b7ffa246209b",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "body": [
+                {
+                  "created": "2025-07-14T15:26:54.554Z",
+                  "creator": "D",
+                  "purpose": "commenting",
+                  "type": "TextualBody",
+                  "format": "text/html",
+                  "value": "<p>Test</p>"
+                }
+              ],
+              "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1274,971,548,220"
+            },
+            {
+              "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/e0649e58-6f8d-414b-a9fa-f28eb79cc750",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "body": [
+                {
+                  "created": "2025-07-14T15:27:03.731Z",
+                  "creator": "D",
+                  "purpose": "commenting",
+                  "type": "TextualBody",
+                  "format": "text/html",
+                  "value": "<p>Test 2</p>"
+                }
+              ],
+              "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1705,875,457,321"
+            },
+            {
+              "id": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1/84b4b5aa-bd8c-428b-8d1a-e5bca2181514",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "body": [
+                {
+                  "created": "2025-07-14T15:27:10.406Z",
+                  "creator": "D",
+                  "purpose": "commenting",
+                  "type": "TextualBody",
+                  "format": "text/html",
+                  "value": "<p>test 4</p>"
+                }
+              ],
+              "target": "https://manifests.museologi.st/9f6fe27e-f60a-46a1-95bb-e0a618b3be3a.json/canvas/p1#xywh=1998,674,570,339"
+            }
+          ]
+        }
+      ]
     }
   ],
   "thumbnail": [

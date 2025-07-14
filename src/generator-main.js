@@ -11,19 +11,20 @@ const PUBLIC_MANIFEST_BASE_URL = 'https://manifests.museologi.st'; // Where your
 const OUTPUT_DIR = path.join(__dirname, '../docs'); // Output directory for static manifests
 const DIRECTUS_COLLECTION_NAME = 'iiif_images'; // The Directus collection holding your items with image files
 const FILE_FIELD_NAME = 'image'; // The field in your Directus collection that links to a directus_files entry
-// const ACCESS_TOKEN = process.env.DIRECTUS_ACCESS_TOKEN || ''; // Optional: for private Directus collections
+const ACCESS_TOKEN = process.env.DIRECTUS_ACCESS_TOKEN || '3TqGGVVO2HHSkv0NOR3AngjjqTfbY4q4'; // Optional: for private Directus collections
 
 // --- Main Manifest Generation Logic ---
 
 async function fetchDirectusData() {
+    const allItems = [];
+    let page = 1;
+    const limit = 50;
     try {
         const headers = {};
-        // if (ACCESS_TOKEN) {
-        //     headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
-        // }
+        if (ACCESS_TOKEN) {
+            headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
+        }
 
-        // Fetch items, ensuring we pull the full file details for the linked image field(s).
-        // The `fields` parameter is crucial here for Directus's relational data.
         const fieldsToFetch = [
             'id',
             'image.*',
@@ -35,14 +36,28 @@ async function fetchDirectusData() {
             'date_created'
         ].join(',');
 
-        const response = await axios.get(`${DIRECTUS_API_URL}/items/${DIRECTUS_COLLECTION_NAME}`, {
-            params: {
-                fields: fieldsToFetch,
-                filter: { status: { _eq: 'published' } } 
-            },
-            headers: headers
-        });
-        return response.data.data;
+        while (true) {
+            const response = await axios.get(`${DIRECTUS_API_URL}/items/${DIRECTUS_COLLECTION_NAME}`, {
+                params: {
+                    fields: fieldsToFetch,
+                    filter: { status: { _eq: 'published' } },
+                    limit,
+                    page
+                },
+                headers: headers
+            });
+
+            const items = response.data.data;
+            if (!items || items.length === 0) break;
+
+            allItems.push(...items);
+
+            // If less than limit, we've reached the last page
+            if (items.length < limit) break;
+
+            page++;
+        }
+        return allItems;
     } catch (error) {
         console.error('Error fetching data from Directus:', error.message);
         if (axios.isAxiosError(error) && error.response) {

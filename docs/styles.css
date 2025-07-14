@@ -1,96 +1,102 @@
 :root {
-    --primary-color: #007bff; /* A nice blue for links */
-    --text-color: #333;
-    --background-color: #f8f9fa; /* Light grey background */
-    --border-color: #e9ecef; /* Light border for separation */
-    --shadow-color: rgba(0, 0, 0, 0.05); /* Subtle shadow */
-    --header-color: #212529; /* Darker text for headers */
+    --primary-color: #0d6efd; /* Bootstrap 5 primary */
+    --text-color: #212529;    /* Bootstrap 5 body color */
+    --background-color: #f8f9fa;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --header-color: #212529;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
-    padding: 2rem 0; /* Add vertical padding to the body */
+    padding: 2rem 0;
     background-color: var(--background-color);
     color: var(--text-color);
-    line-height: 1.6;
+    min-height: 100vh;
+    background-image: url('https://data.fitzmuseum.cam.ac.uk/imagestore/pdp/pdp82/large_PD_8_1979_1_201709_mfj22_dc2.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align content to the top */
-    min-height: 100vh; /* Ensure body takes full viewport height */
-
-    /* --- Background Image Styles --- */
-    background-image: url('https://data.fitzmuseum.cam.ac.uk/imagestore/pdp/pdp82/large_PD_8_1979_1_201709_mfj22_dc2.jpg'); /* **CHANGE THIS PATH** */
-    background-size: cover; /* Ensures the image covers the entire viewport */
-    background-position: center center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents image repetition */
-    background-attachment: fixed; /* Keeps the image fixed when scrolling */
-    /* --- End Background Image Styles --- */
+    align-items: flex-start;
 }
 
-.container {
-    background-color: #ffffff;
-    border-radius: 8px;
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    background-color: #fff;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 12px var(--shadow-color);
-    padding: 2.5rem 3rem; /* More generous padding */
-    width: 100%;
-    max-width: 768px; /* Max width for readability */
-    margin: 0 1rem; /* Horizontal margin for smaller screens */
-    border: 1px solid var(--border-color); /* Subtle border */
+    padding: 2.5rem 3rem;
+    border: 1px solid var(--border-color);
+    margin: 0 1rem;
 }
 
 header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color); /* Separator under header */
+    border-bottom: 1px solid var(--border-color);
 }
 
-h1 {
+h1, .h1 {
     font-size: 2.2rem;
     color: var(--header-color);
     margin-bottom: 0.5rem;
-    font-weight: 600; /* Medium bold */
-    text-align: center; /* Center the title */
+    font-weight: 600;
+    text-align: center;
 }
 
-.file-list {
+.file-list,
+.list-unstyled {
     list-style: none;
     padding: 0;
-    margin: 0; /* Remove default ul margin */
+    margin: 0;
 }
 
-.file-list li {
-    margin-bottom: 0.75rem; /* More space between items */
+.file-list li,
+.list-unstyled li {
+    margin-bottom: 0.75rem;
     padding: 0.75rem 0;
-    border-bottom: 1px dashed var(--border-color); /* Dashed separator */
+    border-bottom: 1px dashed var(--border-color);
 }
 
-.file-list li:last-child {
-    border-bottom: none; /* No border for the last item */
+.file-list li:last-child,
+.list-unstyled li:last-child {
+    border-bottom: none;
 }
 
-.file-list a {
+.file-list a,
+.list-unstyled a {
     text-decoration: none;
-    color: var(--primary-color);
-    font-size: 1.1rem; /* Slightly larger font for links */
-    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    padding-left: 0.5rem; /* Slight indent */
+    /* color: var(--primary-color); */
+    font-size: 1rem;
+    transition: color 0.2s, background-color 0.2s;
+    padding-left: 0.5rem;
 }
 
-.file-list a:hover {
-    color: #0056b3; /* Slightly darker blue on hover */
-    background-color: #f2f6fa; /* Subtle background change on hover */
-    text-decoration: none; /* Keep text decoration off */
+.file-list a:hover,
+.list-unstyled a:hover {
+    /* color: #0a58ca; */
+    /* background-color: #f2f6fa; */
+    text-decoration: none;
 }
 
-.empty-state {
+.empty-state,
+.text-muted {
     text-align: center;
     font-style: italic;
-    color: #6c757d; /* Muted color for empty state */
+    color: #6c757d;
     padding: 2rem 0;
 }
 
-footer {
+footer,
+.footer {
     margin-top: 2.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);

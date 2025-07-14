@@ -8,6 +8,8 @@ on:
 jobs:
   run-scripts-and-commit:
     runs-on: ubuntu-latest
+    permissions: # Add this block at the top level
+        contents: write # Grant write permission for repository contents to all jobs
 
     steps:
       - name: Checkout repository

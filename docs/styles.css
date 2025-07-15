@@ -14,7 +14,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     min-height: 100vh;
-    background-image: url('https://data.fitzmuseum.cam.ac.uk/imagestore/pdp/pdp82/large_PD_8_1979_1_201709_mfj22_dc2.jpg');
+    background-image: url('https://iiif.museologi.st/iiif/3/dragon.jpg/full/max/0/default.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

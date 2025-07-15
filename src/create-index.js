@@ -1,38 +1,51 @@
+// Import required modules
 const fs = require('fs');
 const path = require('path');
 
-const docsDirectory = path.join(__dirname, '..', 'docs'); // Go up one directory, then into 'docs'
-const outputDirectory = docsDirectory; // Output index.html directly in 'docs'
+// Define the path to the 'docs' directory (one level up from current file)
+const docsDirectory = path.join(__dirname, '..', 'docs');
+// Output directory is the same as docsDirectory
+const outputDirectory = docsDirectory;
+// Name of the output HTML file
 const outputFileName = 'index.html';
 
+const repositoryUrl = 'https://github.com/portableant/cantaloupe-iiif-generator/'; // URL of the GitHub repository
 /**
- * Generates an HTML string for a list of files.
- * @param {string[]} files - An array of file names.
- * @param {string} directoryPath - The base directory path for relative links.
- * @returns {string} The HTML string.
+ * Generates an HTML string for a list of files with pagination and manifest details.
+ * @param {string[]} files - Array of file names in the directory.
+ * @param {string} directoryPath - Path to the directory containing the files.
+ * @returns {string} - Complete HTML string for the index page.
  */
 function generateHtmlContent(files, directoryPath) {
     let listItems = '';
     files.forEach(file => {
+        // Skip certain files from the listing
         if (file.toUpperCase() === 'CNAME' || file === 'styles.css') return;
+
         const filePath = path.join(directoryPath, file);
-        const stats = fs.statSync(filePath); // Get file stats to check if it's a directory
+        const stats = fs.statSync(filePath); // Get file stats
+
+        // Format the created date for display
         const createdDate = stats.birthtime
             ? new Date(stats.birthtime).toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-')
             : '';
+        // Format file size for display (if not a directory)
         const fileSize = !stats.isDirectory()
             ? `${(stats.size / 1024).toFixed(1)} KB`
             : '';
 
-        // Check for annotations element if it's a file and ends with .json
+        // Variables for manifest details
         let hasAnnotations = false;
         let manifestTitle = '';
         let annotationCount = 0;
+
+        // If the file is a JSON manifest, try to extract title and annotation info
         if (!stats.isDirectory() && file.endsWith('.json')) {
             try {
                 const content = fs.readFileSync(path.join(directoryPath, file), 'utf8');
                 const json = JSON.parse(content);
-                // Count annotations at the manifest level
+
+                // Count annotations at the manifest level (IIIF v3)
                 if (json && typeof json === 'object' && Array.isArray(json.annotations)) {
                     annotationCount = json.annotations.reduce((sum, page) => {
                         if (Array.isArray(page.items)) {
@@ -55,12 +68,13 @@ function generateHtmlContent(files, directoryPath) {
                     });
                     hasAnnotations = annotationCount > 0;
                 }
-                // Get the title element (IIIF v3: label, v2: label or title)
+
+                // Extract manifest title (IIIF v3: label, v2: label or title)
                 if (json) {
                     if (json.label) {
                         // IIIF v3: label is an object with language keys
                         if (typeof json.label === 'object' && !Array.isArray(json.label)) {
-                            // Try 'en' first, then any available language
+                            // Prefer English, fallback to any available language
                             manifestTitle = json.label.en?.[0] || Object.values(json.label)[0]?.[0] || '';
                         } else if (typeof json.label === 'string') {
                             manifestTitle = json.label;
@@ -70,13 +84,14 @@ function generateHtmlContent(files, directoryPath) {
                     }
                 }
             } catch (e) {
+                // Ignore parse errors, treat as no annotations/title
                 hasAnnotations = false;
                 manifestTitle = '';
                 annotationCount = 0;
-                // Ignore parse errors, treat as no annotations/title
             }
         }
 
+        // Render directory or file as a list item
         if (stats.isDirectory()) {
             listItems += `<li class="px-4 py-2"><a href="./${file}/" class="fw-bold text-decoration-none">${file}/</a> <span class="text-muted small ms-2">Created: ${createdDate}</span></li>`;
         } else {
@@ -97,11 +112,12 @@ function generateHtmlContent(files, directoryPath) {
     const totalItems = files.length;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-    // Generate paginated lists
+    // Split listItems into paginated lists
     let paginatedLists = [];
     for (let i = 0; i < totalPages; i++) {
         const start = i * itemsPerPage;
         const end = start + itemsPerPage;
+        // Split listItems by </li> and rejoin for each page
         const pageItems = listItems
             .split('</li>')
             .slice(start, end)
@@ -111,7 +127,7 @@ function generateHtmlContent(files, directoryPath) {
         paginatedLists.push(pageItems);
     }
 
-    // Generate pagination controls
+    // Generate pagination controls if needed
     let paginationControls = '';
     if (totalPages > 1) {
         paginationControls = `
@@ -133,7 +149,7 @@ function generateHtmlContent(files, directoryPath) {
         `;
     }
 
-    // HTML output with Bootstrap pagination and JS
+    // Return the complete HTML page as a string
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,17 +179,19 @@ function generateHtmlContent(files, directoryPath) {
         <footer class="footer-classy mt-5 text-muted">
             <div>
                 &copy; 2025 Daniel Pett 
-                <a class="text-dark" href="https://github.com/portableant/cantaloupe-iiif-generator/" target="_blank" rel="noopener" title="GitHub repo for this project">
+                <a class="text-dark" href="${repositoryUrl}" target="_blank" rel="noopener" title="GitHub repo for this project">
                     <i class="fab fa-github"></i> GitHub Repo
                 </a>
             </div>
         </footer>
     </div>
     <script>
+        // Store paginated lists and page state for client-side pagination
         const paginatedLists = ${JSON.stringify(paginatedLists)};
         let currentPage = 0;
         const totalPages = ${totalPages};
 
+        // Show a specific page of the manifest list
         function showPage(page) {
             if (page < 0 || page >= totalPages) return;
             currentPage = page;
@@ -184,20 +202,22 @@ function generateHtmlContent(files, directoryPath) {
                 if (item.classList.contains('active')) item.classList.remove('active');
                 if (idx === page + 1) item.classList.add('active'); // +1 for prev button
             });
-            // Enable/disable prev/next
+            // Enable/disable prev/next buttons
             document.getElementById('prevPage').classList.toggle('disabled', page === 0);
             document.getElementById('nextPage').classList.toggle('disabled', page === totalPages - 1);
         }
 
+        // Set up event listeners for pagination controls after DOM loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Add event listeners for prev/next
+            // Previous page button
             document.getElementById('prevPage')?.addEventListener('click', function() {
                 if (currentPage > 0) showPage(currentPage - 1);
             });
+            // Next page button
             document.getElementById('nextPage')?.addEventListener('click', function() {
                 if (currentPage < totalPages - 1) showPage(currentPage + 1);
             });
-            // Add event listeners for page number buttons
+            // Page number buttons
             document.querySelectorAll('.pagination .page-link').forEach((btn, idx) => {
                 if (btn.textContent.match(/^\\d+$/)) {
                     btn.addEventListener('click', function() {
@@ -211,7 +231,13 @@ function generateHtmlContent(files, directoryPath) {
 </html>`;
 }
 
-// Function to get files recursively (optional, but good for real docs sites)
+/**
+ * Recursively get all files in a directory and its subdirectories.
+ * @param {string} dir - Directory to search.
+ * @param {string[]} fileList - Accumulator for file paths.
+ * @param {string} baseDir - Base directory for relative paths.
+ * @returns {string[]} - Array of relative file paths.
+ */
 function getFilesRecursively(dir, fileList = [], baseDir = dir) {
     const files = fs.readdirSync(dir);
 
@@ -231,7 +257,7 @@ function getFilesRecursively(dir, fileList = [], baseDir = dir) {
     return fileList;
 }
 
-// Main execution
+// Main execution block
 try {
     // Ensure the docs directory exists
     if (!fs.existsSync(docsDirectory)) {
@@ -239,20 +265,23 @@ try {
         process.exit(1);
     }
 
-    // Read files directly in the docs directory (non-recursive for simpler index)
-    // For a recursive listing, uncomment the line below and comment out the next one:
+    // Read files directly in the docs directory (non-recursive for simple index)
+    // For recursive listing, use getFilesRecursively instead
     // const files = getFilesRecursively(docsDirectory);
     const filesInDocs = fs.readdirSync(docsDirectory);
 
-    // Filter out the index.html itself if it already exists and is being overwritten
+    // Exclude index.html itself from the listing
     const filteredFiles = filesInDocs.filter(file => file !== outputFileName);
 
+    // Generate the HTML content for the index page
     const htmlContent = generateHtmlContent(filteredFiles, docsDirectory);
     const outputPath = path.join(outputDirectory, outputFileName);
 
+    // Write the generated HTML to the output file
     fs.writeFileSync(outputPath, htmlContent.trim());
     console.log(`Successfully created ${outputPath}`);
 
 } catch (error) {
+    // Handle errors gracefully
     console.error('An error occurred:', error.message);
 }

@@ -146,35 +146,6 @@ function generateHtmlContent(files, directoryPath) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        body { font-family: 'Inter', Arial, sans-serif; }
-        .file-list li { margin-bottom: 0.5rem; }
-        .footer-classy {
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            padding: 2rem 0 1rem 0;
-            text-align: center;
-            font-size: 1rem;
-        }
-        .footer-classy a {
-            color: #24292f;
-            text-decoration: none;
-            margin-left: 0.5em;
-            transition: color 0.2s;
-        }
-        .footer-classy a:hover {
-            color: #0366d6;
-            text-decoration: underline;
-        }
-        .footer-classy .fa-github {
-            font-size: 1.3em;
-            vertical-align: middle;
-        }
-        .manifest-btn {
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-    </style>
 </head>
 <body>
     <div class="container py-4">
@@ -182,11 +153,6 @@ function generateHtmlContent(files, directoryPath) {
             <h1 class="display-5">Available Manifests</h1>
         </header>
         <main>
-            <div class="manifest-btn">
-                <a href="index.html" class="btn btn-dark btn-lg">
-                    <i class="fa fa-list"></i> View Manifest List
-                </a>
-            </div>
             <p>Welcome to the manifest index.</p>
             <p>Below is a list of available simple manifests and links to the file and a demo using clover.</p>
             <ul id="manifestList" class="file-list">

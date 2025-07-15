@@ -44,7 +44,8 @@ header {
     border-bottom: 1px solid var(--border-color);
 }
 
-h1, .h1 {
+h1,
+.h1 {
     font-size: 2.2rem;
     color: var(--header-color);
     margin-bottom: 0.5rem;
@@ -71,7 +72,6 @@ h1, .h1 {
     border-bottom: none;
 }
 
-
 .empty-state,
 .text-muted {
     text-align: center;
@@ -88,4 +88,42 @@ footer,
     text-align: center;
     color: #6c757d;
     font-size: 0.9rem;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+.file-list li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-classy {
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 2rem 0 1rem 0;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.footer-classy a {
+    color: #24292f;
+    text-decoration: none;
+    margin-left: 0.5em;
+    transition: color 0.2s;
+}
+
+.footer-classy a:hover {
+    color: #0366d6;
+    text-decoration: underline;
+}
+
+.footer-classy .fa-github {
+    font-size: 1.3em;
+    vertical-align: middle;
+}
+
+.manifest-btn {
+    display: inline-block;
+    margin-bottom: 1.5rem;
 }

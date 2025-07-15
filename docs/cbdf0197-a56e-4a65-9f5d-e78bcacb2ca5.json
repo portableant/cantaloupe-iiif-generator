@@ -1,0 +1,78 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://manifests.museologi.st/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.json",
+  "type": "Manifest",
+  "label": {
+    "en": [
+      "An aerial view of Westminster School"
+    ]
+  },
+  "items": [
+    {
+      "id": "https://manifests.museologi.st/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.json/canvas/p1",
+      "type": "Canvas",
+      "height": 1917,
+      "width": 2560,
+      "label": {
+        "en": [
+          "2025 Carousel 2 Scaled"
+        ]
+      },
+      "items": [
+        {
+          "id": "https://manifests.museologi.st/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.json/canvas/p1/annotationpage/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://manifests.museologi.st/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.json/canvas/p1/annotationpage/1/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://iiif.museologi.st/iiif/3/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.jpg/full/max/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2560,
+                "height": 1917,
+                "service": [
+                  {
+                    "id": "https://iiif.museologi.st/iiif/3/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.jpg",
+                    "type": "ImageService3",
+                    "profile": "http://iiif.io/api/image/3/level2.json"
+                  }
+                ]
+              },
+              "target": "https://manifests.museologi.st/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.json/canvas/p1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "thumbnail": [
+    {
+      "id": "https://iiif.museologi.st/iiif/3/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.jpg/full/256,/0/default.jpg",
+      "type": "Image",
+      "service": [
+        {
+          "id": "https://iiif.museologi.st/iiif/3/cbdf0197-a56e-4a65-9f5d-e78bcacb2ca5.jpg",
+          "type": "ImageService3",
+          "profile": "http://iiif.io/api/image/3/level2.json"
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "label": {
+        "en": [
+          "Date Created"
+        ]
+      },
+      "value": {
+        "en": [
+          "2025-07-15T07:56:50.266Z"
+        ]
+      }
+    }
+  ]
+}

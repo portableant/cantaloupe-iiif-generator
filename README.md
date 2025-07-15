@@ -9,6 +9,11 @@ To generate the manifests run:
 ```
 npm run generate:iiif 
 ```
+OR
+
+```
+npm run annotations
+```
 
 To generate the index file run
 
@@ -16,6 +21,8 @@ To generate the index file run
 npm run create:index
 ```
 
-## TO DO
+This creates a paginated index of all the manifests, link to a demo using clover IIIF engine, whether there's any annotations and the file size and date of generation.
 
-Add action to run this daily
+## CI
+
+A simple action can be triggered to build these or it runs once a week based on cron.

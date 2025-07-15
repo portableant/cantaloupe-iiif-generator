@@ -11,7 +11,7 @@ const PUBLIC_MANIFEST_BASE_URL = 'https://manifests.museologi.st'; // Where your
 const OUTPUT_DIR = path.join(__dirname, '../docs'); // Output directory for static manifests
 const DIRECTUS_COLLECTION_NAME = 'iiif_images'; // The Directus collection holding your items with image files
 const FILE_FIELD_NAME = 'image'; // The field in your Directus collection that links to a directus_files entry
-const ACCESS_TOKEN = process.env.DIRECTUS_ACCESS_TOKEN || '3TqGGVVO2HHSkv0NOR3AngjjqTfbY4q4'; // Optional: for private Directus collections
+const ACCESS_TOKEN = process.env.DIRECTUS_ACCESS_TOKEN || ''; // Optional: for private Directus collections
 
 // --- Main Manifest Generation Logic ---
 

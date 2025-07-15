@@ -71,21 +71,6 @@ h1, .h1 {
     border-bottom: none;
 }
 
-.file-list a,
-.list-unstyled a {
-    text-decoration: none;
-    /* color: var(--primary-color); */
-    font-size: 1rem;
-    transition: color 0.2s, background-color 0.2s;
-    padding-left: 0.5rem;
-}
-
-.file-list a:hover,
-.list-unstyled a:hover {
-    /* color: #0a58ca; */
-    /* background-color: #f2f6fa; */
-    text-decoration: none;
-}
 
 .empty-state,
 .text-muted {

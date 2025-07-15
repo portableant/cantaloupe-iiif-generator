@@ -26,21 +26,54 @@ function generateHtmlContent(files, directoryPath) {
 
         // Check for annotations element if it's a file and ends with .json
         let hasAnnotations = false;
+        let manifestTitle = '';
+        let annotationCount = 0;
         if (!stats.isDirectory() && file.endsWith('.json')) {
             try {
                 const content = fs.readFileSync(path.join(directoryPath, file), 'utf8');
                 const json = JSON.parse(content);
-                // Check for annotations at the manifest level or within items
-                if (
-                    (json && typeof json === 'object' && json.annotations) ||
-                    (Array.isArray(json.items) && json.items.some(item => item.annotations))
-                ) {
-                    hasAnnotations = true;
+                // Count annotations at the manifest level
+                if (json && typeof json === 'object' && Array.isArray(json.annotations)) {
+                    annotationCount = json.annotations.reduce((sum, page) => {
+                        if (Array.isArray(page.items)) {
+                            return sum + page.items.length;
+                        }
+                        return sum;
+                    }, 0);
+                    hasAnnotations = annotationCount > 0;
+                } else if (Array.isArray(json.items)) {
+                    // Check for annotations in items (e.g., canvases)
+                    json.items.forEach(item => {
+                        if (Array.isArray(item.annotations)) {
+                            annotationCount += item.annotations.reduce((sum, page) => {
+                                if (Array.isArray(page.items)) {
+                                    return sum + page.items.length;
+                                }
+                                return sum;
+                            }, 0);
+                        }
+                    });
+                    hasAnnotations = annotationCount > 0;
                 }
-                
+                // Get the title element (IIIF v3: label, v2: label or title)
+                if (json) {
+                    if (json.label) {
+                        // IIIF v3: label is an object with language keys
+                        if (typeof json.label === 'object' && !Array.isArray(json.label)) {
+                            // Try 'en' first, then any available language
+                            manifestTitle = json.label.en?.[0] || Object.values(json.label)[0]?.[0] || '';
+                        } else if (typeof json.label === 'string') {
+                            manifestTitle = json.label;
+                        }
+                    } else if (json.title) {
+                        manifestTitle = json.title;
+                    }
+                }
             } catch (e) {
                 hasAnnotations = false;
-                // Ignore parse errors, treat as no annotations
+                manifestTitle = '';
+                annotationCount = 0;
+                // Ignore parse errors, treat as no annotations/title
             }
         }
 
@@ -49,10 +82,10 @@ function generateHtmlContent(files, directoryPath) {
         } else {
             listItems += `<li class="d-flex justify-content-between align-items-center px-4 py-2">
             <span>
-                <a href="./${file}" class="text-decoration-none">${file}</a>
-                <span class="text-muted small ms-2">Created: ${createdDate}</span>
-                <span class="text-muted small ms-2">Size: ${fileSize}</span>
-                ${hasAnnotations ? '<span class="badge bg-info text-dark ms-2">Annotations</span>' : ''}
+            ${manifestTitle ? `<span class="ms-2"><a href="./${file}" class="fw-semibold link-dark" title="View manifest">${manifestTitle}</a></span>` : ''}
+            <span class="text-muted small ms-2">Created: ${createdDate}</span>
+            <span class="text-muted small ms-2">Size: ${fileSize}</span>
+            ${hasAnnotations ? `<span class="badge bg-primary text-white ms-2">Annotations: ${annotationCount}</span>` : ''}
             </span>
             <a href="https://samvera-labs.github.io/clover-iiif/docs/viewer/demo?iiif-content=https://manifests.museologi.st/${file}" class="btn btn-dark btn-sm ms-2" target="_blank" rel="noopener">Demo</a>
             </li>`;
@@ -60,7 +93,7 @@ function generateHtmlContent(files, directoryPath) {
     });
 
     // Pagination logic
-    const itemsPerPage = 100;
+    const itemsPerPage = 12;
     const totalItems = files.length;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
@@ -112,9 +145,35 @@ function generateHtmlContent(files, directoryPath) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         body { font-family: 'Inter', Arial, sans-serif; }
         .file-list li { margin-bottom: 0.5rem; }
+        .footer-classy {
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .footer-classy a {
+            color: #24292f;
+            text-decoration: none;
+            margin-left: 0.5em;
+            transition: color 0.2s;
+        }
+        .footer-classy a:hover {
+            color: #0366d6;
+            text-decoration: underline;
+        }
+        .footer-classy .fa-github {
+            font-size: 1.3em;
+            vertical-align: middle;
+        }
+        .manifest-btn {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -123,6 +182,11 @@ function generateHtmlContent(files, directoryPath) {
             <h1 class="display-5">Available Manifests</h1>
         </header>
         <main>
+            <div class="manifest-btn">
+                <a href="index.html" class="btn btn-dark btn-lg">
+                    <i class="fa fa-list"></i> View Manifest List
+                </a>
+            </div>
             <p>Welcome to the manifest index.</p>
             <p>Below is a list of available simple manifests and links to the file and a demo using clover.</p>
             <ul id="manifestList" class="file-list">
@@ -130,8 +194,13 @@ function generateHtmlContent(files, directoryPath) {
             </ul>
             ${paginationControls}
         </main>
-        <footer class="mt-5 text-muted">
-            <p>&copy; 2025 Daniel Pett</p>
+        <footer class="footer-classy mt-5 text-muted">
+            <div>
+                &copy; 2025 Daniel Pett 
+                <a class="text-dark" href="https://github.com/portableant/cantaloupe-iiif-generator/" target="_blank" rel="noopener" title="GitHub repo for this project">
+                    <i class="fab fa-github"></i> GitHub Repo
+                </a>
+            </div>
         </footer>
     </div>
     <script>
